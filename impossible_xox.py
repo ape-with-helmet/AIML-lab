@@ -82,7 +82,7 @@ def Cwinning_move(): #checks if computer can win and returns the position of the
 
 def random_mover(): #randomly fills a spot
     while " " in board:
-        listpos = [0,1,2,3,4,5,6,7,8]
+        listpos = [0,1,2,3,4,5,6,7,8,0,0,2,2,0,4,4,6,6,8,8]
         cmove = int(random.choice(listpos))
         if board[cmove] == " ":
             board[cmove] = "O"

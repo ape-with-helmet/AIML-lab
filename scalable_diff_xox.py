@@ -91,7 +91,7 @@ def comp_decider(c,d):
     if d == 3:
         random_mover()
     elif c%d == 0:
-        computer_move()
+        return computer_move()
     else:
         random_mover()
 def computer_move():
@@ -112,12 +112,16 @@ def computer_move():
         return True
 print("\n\n\nWELCOME TO IMPOSSIBLE' XOX!\nTRY NOT TO LOSE!\n\n\n")
 side = bool(random.choice([True,False]))
-d = int(input("Enter difficulty!\n1 - hard\n2 - medium\n3 - easy"))
+while True:
+    d = int(input("Enter difficulty!\n1 - HARD (Computer thinks for every move!)\n2 - MEDIUM (Computer thinks for every other move)\n3 - EASY (Computer plays randomly)\n"))
+    if d>3 or d<1: print("Invalid entry! try again\n")
+    else: break
 c = 0
 print_board()
 if side:
     while True:
-        print("Player move!")
+        c+=1
+        print("Player move!\n")
         player_move()
         print_board()
         if victory():
@@ -127,7 +131,9 @@ if side:
             print("DRAW!")
             break 
         print("Computer move!")
-        if comp_decider(c,d):
+        x = comp_decider(c,d)
+        print(x)
+        if x:
             print_board()
             break
         print_board()
@@ -137,10 +143,10 @@ if side:
             break 
 else:
     while True:
+        c+=1
         print("Computer move!")
         if comp_decider(c,d):
             print_board()
-            print("Computer Wins!")
             break
         print_board()
         if is_draw():
@@ -151,7 +157,7 @@ else:
         player_move()
         print_board()
         if victory():
-            print("Player Won!")
+            print("Player Won!\n")
             break
         if is_draw():
             print("DRAW!")
